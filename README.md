@@ -1,2 +1,2 @@
 # HealthCheckIn
-Auto check in on yiban
+Auto check in for yiban
