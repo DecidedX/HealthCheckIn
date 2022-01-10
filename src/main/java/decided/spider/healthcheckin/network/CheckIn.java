@@ -17,11 +17,11 @@ public class CheckIn {
         this.connection = connection;
     }
 
-    public MsgManager execute() throws Exception {
+    public MsgManager execute(String longitude,String latitude) throws Exception {
         if (isChecked()){
             return MsgManager.IS_CHECKED;
         }else {
-            JSONObject location = MapLocation.getAddress(connection,"117.121673","30.522999");
+            JSONObject location = MapLocation.getAddress(connection,longitude,latitude);
             writeInformation(location);
 
             return saveInformation();
@@ -32,7 +32,7 @@ public class CheckIn {
         connection.url("http://gaut.shzu.edu.cn/gxqtxiaoyingyong/zyq/viewZyqJianKangDaKaForApp.do?client=gxqtapp");
         Connection.Response response = connection.method(Connection.Method.POST).execute();
         JSONObject json = JSONObject.parseObject(response.body());
-        return !json.getJSONObject("data").getJSONObject("jkdk").containsKey("tiwen");
+        return json.getJSONObject("data").getJSONObject("jkdk").containsKey("tiwen");
     }
 
     private MsgManager saveInformation() throws Exception {

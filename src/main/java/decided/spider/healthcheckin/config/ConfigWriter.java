@@ -30,9 +30,8 @@ public class ConfigWriter {
 
     protected MsgManager changePassword(String username,String password) throws IOException {
         if (isExist(username)){
-            JSONObject account = new JSONObject();
+            JSONObject account = json.getJSONObject(username);
             account.put("password",password);
-            account.put("token", "");
             json.put(username,account);
             return write(json);
         }else {
@@ -40,12 +39,32 @@ public class ConfigWriter {
         }
     }
 
-    protected MsgManager addAccount(String username, String password) throws IOException {
+    protected MsgManager changeLocation(String username,String longitude,String latitude) throws IOException {
+        if (isExist(username)){
+            JSONObject account = json.getJSONObject(username);
+            account.put("longitude",longitude);
+            account.put("latitude", latitude);
+            json.put(username,account);
+            return write(json);
+        }else {
+            return MsgManager.ACCOUNT_NOT_EXIST;
+        }
+    }
+
+    protected MsgManager addAccount(String username, String password,String longitude,String latitude) throws IOException {
         JSONObject account = new JSONObject();
         account.put("password",password);
         account.put("token", "");
+        account.put("longitude",longitude);
+        account.put("latitude",latitude);
         json.put(username,account);
         return write(json);
+    }
+
+    protected MsgManager removeAccount(String username) throws IOException{
+        json.remove(username);
+        write(json);
+        return MsgManager.ACCOUNT_REMOVE_SUCCESS;
     }
 
     private MsgManager write(JSONObject json) throws IOException {

@@ -34,9 +34,9 @@ public class ConfigFile {
 
     }
 
-    public MsgManager addAccount(String username,String password) throws IOException {
+    public MsgManager addAccount(String username,String password,String longitude,String latitude) throws IOException {
         ConfigWriter writer = new ConfigWriter(file);
-        return writer.addAccount(username,password);
+        return writer.addAccount(username,password,longitude,latitude);
     }
 
     public MsgManager changeToken(String username,String token) throws IOException {
@@ -49,9 +49,16 @@ public class ConfigFile {
         return writer.changePassword(username,password);
     }
 
-//    public MsgManager removeAccount(){
-//
-//    }
+    public MsgManager changeLocation(String username,String longitude,String latitude) throws IOException {
+        ConfigWriter writer = new ConfigWriter(file);
+        return writer.changeLocation(username,longitude,latitude);
+    }
+
+    public MsgManager removeAccount(String username) throws IOException {
+        ConfigWriter writer = new ConfigWriter(file);
+        return writer.removeAccount(username);
+    }
+
     public JSONObject readAccounts() throws IOException {
         return new ConfigReader(file).read();
     }

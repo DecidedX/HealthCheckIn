@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class LoginCheckIn {
 
+    private Connection connection;
     private final String loginToken;
     private boolean login;
 
@@ -16,14 +17,24 @@ public class LoginCheckIn {
         this.loginToken = loginToken;
     }
 
-    public CheckIn login() throws IOException {
-        Connection connection = putCookies(putHeaders(Jsoup.connect("https://f.yiban.cn/iapp377994"))).ignoreContentType(true);
+    public LoginCheckIn(Connection connection){
+        this.connection = connection;
+        this.loginToken = "";
+    }
 
-        Connection.Response response = connection.execute();
+    public CheckIn login() throws IOException {
+        Connection.Response response;
+        if (loginToken.equals("")){
+            connection.url("https://f.yiban.cn/iapp377994");
+        }else {
+            connection = putCookies(putHeaders(Jsoup.connect("https://f.yiban.cn/iapp377994"))).ignoreContentType(true);
+        }
+        response = connection.execute();
         login = response.cookies().containsKey("gautappin");
 
         return new CheckIn(connection);
     }
+
     public boolean isLogin(){
         return login;
     }

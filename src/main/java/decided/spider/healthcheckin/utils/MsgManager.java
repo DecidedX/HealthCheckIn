@@ -2,9 +2,14 @@ package decided.spider.healthcheckin.utils;
 
 public enum MsgManager {
 
+    YIBAN_LOGIN_FAILURE{
+        public String toString() {
+            return "易班登录失败";
+        }
+    },
     LOGIN_FAILURE{
         public String toString() {
-            return "登录失败";
+            return "打卡登录失败";
         }
     },
     IS_CHECKED{
@@ -30,6 +35,11 @@ public enum MsgManager {
     ACCOUNT_NOT_EXIST{
         public String toString() {
             return "用户不存在";
+        }
+    },
+    ACCOUNT_REMOVE_SUCCESS{
+        public String toString() {
+            return "用户已删除";
         }
     },
     ;
