@@ -36,7 +36,7 @@ public class ConfigFile {
 
     public MsgManager addAccount(String username,String password,String longitude,String latitude) throws IOException {
         ConfigWriter writer = new ConfigWriter(file);
-        return writer.addAccount(username,password,longitude,latitude);
+        return writer.addAccount(username,password,String.valueOf(Float.parseFloat(longitude)-0.0067f),String.valueOf(Float.parseFloat(latitude)-0.0064f));
     }
 
     public MsgManager changeToken(String username,String token) throws IOException {
@@ -51,7 +51,7 @@ public class ConfigFile {
 
     public MsgManager changeLocation(String username,String longitude,String latitude) throws IOException {
         ConfigWriter writer = new ConfigWriter(file);
-        return writer.changeLocation(username,longitude,latitude);
+        return writer.changeLocation(username,String.valueOf(Float.parseFloat(longitude)-0.0067f),String.valueOf(Float.parseFloat(latitude)-0.0064f));
     }
 
     public MsgManager removeAccount(String username) throws IOException {

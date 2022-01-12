@@ -19,7 +19,7 @@ public class CheckThread implements Runnable{
         System.out.println("启动打卡线程");
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY,0);
-        today.set(Calendar.MINUTE,10);
+        today.set(Calendar.MINUTE,5);
         today.set(Calendar.SECOND,0);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

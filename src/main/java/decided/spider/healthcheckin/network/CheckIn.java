@@ -3,6 +3,7 @@ package decided.spider.healthcheckin.network;
 import com.alibaba.fastjson.JSONObject;
 import decided.spider.healthcheckin.utils.MsgManager;
 import decided.spider.healthcheckin.utils.JsRunner;
+import decided.spider.healthcheckin.utils.RandomBodyT;
 import org.jsoup.Connection;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class CheckIn {
         connection.url("http://gaut.shzu.edu.cn/gxqtxiaoyingyong/zyq/viewZyqJianKangDaKaForApp.do?client=gxqtapp");
         Connection.Response response = connection.method(Connection.Method.POST).execute();
         JSONObject json = JSONObject.parseObject(response.body());
-        return json.getJSONObject("data").getJSONObject("jkdk").containsKey("tiwen");
+        return !(json.getJSONObject("data").getJSONObject("jkdk").getString("tiwen") == null);
     }
 
     private MsgManager saveInformation() throws Exception {
@@ -48,9 +49,9 @@ public class CheckIn {
         data.put("dwaddress",location.getString("address"));
         data.put("jkzk","1");
         data.put("bszz","");
-        data.put("tiwen","36");
-        data.put("tiwen2","36");
-        data.put("tiwen3","36");
+        data.put("tiwen", RandomBodyT.getRandomBodyTemperature());
+        data.put("tiwen2",RandomBodyT.getRandomBodyTemperature());
+        data.put("tiwen3",RandomBodyT.getRandomBodyTemperature());
         data.put("bz","");
         data.put("wxprovience",location.getString("province"));
         data.put("wxcity",location.getString("district"));

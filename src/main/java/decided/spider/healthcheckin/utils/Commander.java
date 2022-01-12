@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import decided.spider.healthcheckin.config.ConfigFile;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 public class Commander {
@@ -13,7 +12,6 @@ public class Commander {
         ConfigFile file = new ConfigFile();
         switch (args[0]){
             case "add":
-                System.out.println(Arrays.toString(args));
                 if (args.length == 5){
                     System.out.println(file.addAccount(args[1],args[2],args[3],args[4]));
                 }else {
