@@ -51,6 +51,7 @@ public class CheckThread implements Runnable{
                         }
 
                         System.out.println("__________________________________________________");
+                        Thread.sleep(5000);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

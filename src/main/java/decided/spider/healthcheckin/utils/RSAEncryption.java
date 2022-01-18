@@ -1,5 +1,8 @@
 package decided.spider.healthcheckin.utils;
 
+import decided.spider.healthcheckin.utils.base64.BASE64Decoder;
+import decided.spider.healthcheckin.utils.base64.BASE64Encoder;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -22,9 +25,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 /**
  * RSA算法，实现数据的加密解密。
