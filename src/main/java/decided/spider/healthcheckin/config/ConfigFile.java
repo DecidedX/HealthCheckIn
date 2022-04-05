@@ -63,5 +63,10 @@ public class ConfigFile {
         return new ConfigReader(file).read();
     }
 
+    public MsgManager setEmail(String username,String email) throws IOException {
+        ConfigWriter writer = new ConfigWriter(file);
+        return writer.setEmail(username, email);
+    }
+
 
 }

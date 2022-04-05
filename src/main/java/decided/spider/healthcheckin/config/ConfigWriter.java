@@ -67,6 +67,17 @@ public class ConfigWriter {
         return MsgManager.ACCOUNT_REMOVE_SUCCESS;
     }
 
+    protected MsgManager setEmail(String username,String email) throws IOException {
+        if (isExist(username)){
+            JSONObject account = json.getJSONObject(username);
+            account.put("email",email);
+            json.put(username,account);
+            return write(json);
+        }else {
+            return MsgManager.ACCOUNT_NOT_EXIST;
+        }
+    }
+
     private MsgManager write(JSONObject json) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.write(JSON.toJSONString(json, SerializerFeature.WriteNullStringAsEmpty));

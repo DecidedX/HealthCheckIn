@@ -20,11 +20,6 @@ public class Main {
             }
             new Commander(command);
         }
-
-
-//        ConfigFile config = new ConfigFile();
-//        config.addAccount("17356095404","20011118wt.","117.114927","30.516808");
-//        config.changeToken("17356095404","a27256beae14480f7086bc79a2ea8b75");
     }
 
 }

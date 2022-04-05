@@ -1,14 +1,15 @@
 package decided.spider.healthcheckin.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import decided.spider.healthcheckin.CheckThread;
 import decided.spider.healthcheckin.config.ConfigFile;
+import decided.spider.healthcheckin.email.EmailConfig;
 
-import java.io.IOException;
 import java.util.Map;
 
 public class Commander {
 
-    public Commander(String[] args) throws IOException {
+    public Commander(String[] args) throws Exception {
         ConfigFile file = new ConfigFile();
         switch (args[0]){
             case "add":
@@ -45,6 +46,24 @@ public class Commander {
                     for (Map.Entry<String, Object> e:accounts.entrySet()){
                         System.out.println(e.getKey());
                     }
+                }else {
+                    outError();
+                }
+                break;
+            case "check":
+                CheckThread.startCheck();
+                break;
+            case "email":
+                if (args.length == 3){
+                    System.out.println(file.setEmail(args[1],args[2]));
+                }else {
+                    outError();
+                }
+                break;
+            case "setMS":
+                if (args.length == 6){
+                    EmailConfig config = new EmailConfig();
+                    config.setEmailConfig(args[1],args[2],args[3],args[4],args[5]);
                 }else {
                     outError();
                 }
