@@ -2,6 +2,7 @@ package decided.spider.healthcheckin.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import decided.spider.healthcheckin.CheckThread;
+import decided.spider.healthcheckin.config.DatabaseConfig;
 import decided.spider.healthcheckin.config.JDBCTool;
 import decided.spider.healthcheckin.email.EmailConfig;
 
@@ -64,6 +65,14 @@ public class Commander {
                 if (args.length == 6){
                     EmailConfig config = new EmailConfig();
                     config.setEmailConfig(args[1],args[2],args[3],args[4],args[5]);
+                }else {
+                    outError();
+                }
+                break;
+            case "setDB":
+                if (args.length == 5){
+                    DatabaseConfig config = new DatabaseConfig();
+                    config.setDBConfig(args[1],args[2],args[3],args[4]);
                 }else {
                     outError();
                 }
