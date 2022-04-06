@@ -4,25 +4,30 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import decided.spider.healthcheckin.utils.MsgManager;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class JDBCTool {
 
-    private static final String url = "jdbc:mysql://192.168.137.41:3306/check_in";
-    private static final String user = "root";
-    private static final String passwd = "admin";
+    private static String url;
+    private static String username;
+    private static String passwd;
     private static Connection connection;
 
     static {
         try {
+            DatabaseConfig config = new DatabaseConfig();
+            url = config.getUrl();
+            username = config.getUsername();
+            passwd = config.getPassword();
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
 
     public JDBCTool() throws SQLException {
-        connection = DriverManager.getConnection(url, user, passwd);
+        connection = DriverManager.getConnection(url, username, passwd);
     }
 
     public MsgManager addAccount(String username, String password, String longitude, String latitude, String email) throws SQLException {
