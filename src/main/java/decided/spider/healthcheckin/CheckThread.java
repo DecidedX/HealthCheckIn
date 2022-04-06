@@ -1,7 +1,7 @@
 package decided.spider.healthcheckin;
 
 import com.alibaba.fastjson.JSONObject;
-import decided.spider.healthcheckin.config.ConfigFile;
+import decided.spider.healthcheckin.config.JDBCTool;
 import decided.spider.healthcheckin.email.EmailSender;
 import decided.spider.healthcheckin.network.CheckIn;
 import decided.spider.healthcheckin.network.LoginCheckIn;
@@ -60,8 +60,8 @@ public class CheckThread implements Runnable{
 
     public static void startCheck() throws Exception {
         System.out.println("====================开始自动打卡====================");
-        ConfigFile config = new ConfigFile();
-        accounts = config.readAccounts();
+        JDBCTool jdbcTool = new JDBCTool();
+        accounts = jdbcTool.readAccounts();
         for (Map.Entry<String, Object> e : accounts.entrySet()) {
             String username = e.getKey();
             JSONObject data = (JSONObject) e.getValue();

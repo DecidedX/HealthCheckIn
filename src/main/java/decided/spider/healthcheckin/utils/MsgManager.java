@@ -37,6 +37,11 @@ public enum MsgManager {
             return "用户不存在";
         }
     },
+    ACCOUNT_EXISTED{
+        public String toString() {
+            return "用户已存在";
+        }
+    },
     ACCOUNT_REMOVE_SUCCESS{
         public String toString() {
             return "用户已删除";
